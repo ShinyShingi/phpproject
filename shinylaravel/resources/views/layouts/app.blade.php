@@ -25,6 +25,22 @@
         .book {
             list-style: none;
         }
+        .image-container {
+            width: 100%;
+            height: 0;
+            padding-top: 150%;  
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .img-cover {
+            position: absolute;
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+        }
     </style>
 </head>
 

@@ -10,9 +10,11 @@
             <ul class="row" id="incomplete-books">
             @foreach ($incompleteBooks as $book)
                 <li class="mt-1 mb-1 col-3 book">
-                    <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid" alt="Cover Image">
+                    <div class="image-container">
+                        <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
+                    </div>
+    
                     <span class="">
-                        <input type="checkbox" data-id="{{$book->id}}" class="book-checkbox" {{ $book->completed ? 'checked' : '' }}> 
                         <h3>
                             {{$book->title}}
                         </h3>
@@ -22,18 +24,63 @@
                         <h4>
                             {{$book->series}}
                         </h4>
+                    </span>
+                    <span>
+                        Status: 
+                        <select class="form-select" id="book-status" name="status" data-id="{{ $book->id }}">
+                            <option selected value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
+                            <option value="reading">Reading</option>
+                            <option value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
+                        </select>
+
                     </span>
                     <button data-id="{{$book->id}}" class=" btn btn-danger delete-book-btn">Remove</button>
                 </li>
             @endforeach
             </ul>
+
+
+            <h3 class="mb-3">Books in progress:</h3>
+            <ul class="row" id="in-progress-books">
+                @foreach ($inProgressBooks as $book)
+                    <li class="mt-1 mb-1 col-3 book">
+                        <div class="image-container">
+                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
+                        </div>
+                        <span class="">
+                            <h3>
+                                {{$book->title}}
+                            </h3>
+                            <h4>
+                                {{$book->author}}
+                            </h4>
+                            <h4>
+                                {{$book->series}}
+                            </h4>
+                        </span>
+                        <span>
+                            Status: 
+                            <select class="form-select" id="book-status" name="status" data-id="{{ $book->id }}">
+                                <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
+                                <option selected value="reading">Reading</option>
+                                <option value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
+                            </select>
+
+                        </span>
+                        <button data-id="{{$book->id}}" class=" btn btn-danger delete-book-btn">Remove</button>
+                    </li>
+                @endforeach
+            </ul>
+
+
             <h3 class="mb-3 mt-5">Completed Books:</h3>
             <ul class="mb-5" id="completed-books">
             @foreach ($completedBooks as $book)
                 <li class="mt-1 mb-1 col-3 book">
-                <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid" alt="Cover Image">
+                    <div class="image-container">
+                        <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
+                    </div>
                     <span class="">
-                        <input type="checkbox" data-id="{{$book->id}}" class="book-checkbox" {{ $book->completed ? 'checked' : '' }}> 
                         <h3>
                             {{$book->title}}
                         </h3>
@@ -44,6 +91,16 @@
                             {{$book->series}}
                         </h4>
                     </span>
+                    <span>
+                        Status: 
+                        <select class="form-select" id="book-status" name="status" data-id="{{ $book->id }}">
+                            <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
+                            <option value="reading">Reading</option>
+                            <option selected value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
+                        </select>
+
+                    </span>
+                    <button data-id="{{$book->id}}" class=" btn btn-danger delete-book-btn">Remove</button>
                 </li>
             @endforeach
             </ul>
@@ -55,58 +112,53 @@
             .sort((a, b) => a.textContent.localeCompare(b.textContent))
             .forEach(li => ul.appendChild(li));
         }
-        document.addEventListener("DOMContentLoaded", function() {
-            let checkboxes = document.querySelectorAll('.book-checkbox');
-            let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');  // Get CSRF token from meta tag
+        document.addEventListener('DOMContentLoaded', function () {
+            let selects = document.querySelectorAll('.form-select');
+            let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            checkboxes.forEach(function(checkbox) {
-                checkbox.addEventListener('change', function() {
+            selects.forEach(function(select) {
+                select.addEventListener('change', function() {
                     let bookId = this.dataset.id;
-                    let isChecked = this.checked;
-                    let listItem = this.closest('li');  // Get the parent list item
+                    let newStatus = this.value;  // Get the selected value
                     
-                    // Identify the incomplete and complete book lists
+                    // Identify the different book lists
                     let incompleteList = document.getElementById('incomplete-books');
                     let completedList = document.getElementById('completed-books');
+                    let inProgressList = document.getElementById('in-progress-books');
+                    console.log("incompleteList:", incompleteList);
+                    console.log("completedList:", completedList);
+                    console.log("inProgressList:", inProgressList);
+
+                    let listItem = this.closest('li');
+
                     
                     // AJAX call to update database
                     fetch('/updateBook/' + bookId, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': csrfToken  // Include CSRF token in the request header
+                            'X-CSRF-TOKEN': csrfToken
                         },
-                        body: JSON.stringify({ isChecked: isChecked })
+                        body: JSON.stringify({ status: newStatus })
                     })
                     .then(response => response.json())
                     .then(data => {
                         console.log(data);
-                        
+
                         // Move the list item to the appropriate list
-                        if (isChecked) {
-                            completedList.appendChild(listItem);
-
-                            let deleteButton = listItem.querySelector('.delete-book-btn');
-                            if (deleteButton) {
-                                deleteButton.remove();
-                            }
-
-                            sortList(completedList);
-                        } else {
+                        if (newStatus === 'unread') {
                             incompleteList.appendChild(listItem);
-
-                            let deleteButton = document.createElement('button');
-                            deleteButton.textContent = 'Remove';
-                            deleteButton.dataset.id = bookId;
-                            deleteButton.className = 'btn btn-danger delete-book-btn';
-                            listItem.appendChild(deleteButton);
-
-                            sortList(incompleteList); 
+                        } else if (newStatus === 'reading') {
+                            inProgressList.appendChild(listItem);
+                        } else if (newStatus === 'read') {
+                            completedList.appendChild(listItem);
                         }
+                        listItem.querySelector('select').value = newStatus;
                     })
                     .catch((error) => console.error('Error:', error));
                 });
             });
+       
             document.querySelectorAll('.delete-book-btn').forEach(function(button) {
                 button.addEventListener('click', function() {
                     let bookId = this.dataset.id;
