@@ -15,10 +15,21 @@ class BookController extends Controller
      */
     public function index()
     {
-        $completedBooks = Book::where('completed', true)->get();
-        $incompleteBooks = Book::where('completed', false)->get();
-        return view('shinybooks', ['completedBooks' => $completedBooks, 'incompleteBooks' => $incompleteBooks]);
+        $completedBooks = Book::where('status', 'read')->get();
+        $incompleteBooks = Book::where('status', 'unread')->get();
+        $inProgressBooks = Book::where('status', 'reading')->get();
+        
+        Log::info('Completed Books:', ['completedBooks' => $completedBooks]);
+        Log::info('Incomplete Books:', ['incompleteBooks' => $incompleteBooks]);
+        Log::info('In Progress Books:', ['inProgressBooks' => $inProgressBooks]);
+
+        return view('shinybooks', [
+            'completedBooks' => $completedBooks, 
+            'incompleteBooks' => $incompleteBooks,
+            'inProgressBooks' => $inProgressBooks
+        ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -107,18 +118,35 @@ class BookController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $existingBook = Book::find($id);
-        Log::info('Debugging isChecked', ['isChecked' => $request->input('isChecked')]);
 
+        $existingBook = Book::find($id);
         if ($existingBook) {
-            $existingBook->completed = $request->input('isChecked') ? true : false;
-            $existingBook->completed_at = $request->input('isChecked') ? Carbon::now() : null;
+            $newStatus = $request->input('status');
+            
+            // Update the book's status in the database
+            $existingBook->status = $newStatus;
+            
+            // Additional logic if needed (e.g., set completed_at time)
+            
             $existingBook->save();
 
             return response()->json(['success' => true]);
         }
 
         return response()->json(['success' => false, 'message' => 'No book found']);
+
+        // $existingBook = Book::find($id);
+        // Log::info('Debugging isChecked', ['isChecked' => $request->input('isChecked')]);
+
+        // if ($existingBook) {
+        //     $existingBook->completed = $request->input('isChecked') ? true : false;
+        //     $existingBook->completed_at = $request->input('isChecked') ? Carbon::now() : null;
+        //     $existingBook->save();
+
+        //     return response()->json(['success' => true]);
+        // }
+
+        // return response()->json(['success' => false, 'message' => 'No book found']);
     }
 
     /**
