@@ -15,33 +15,10 @@
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}" media="all">
 
 
-    <style>
-        body {
-            font-family: 'Nunito';
-        }
-        .book {
-            list-style: none;
-        }
-        .image-container {
-            width: 100%;
-            height: 0;
-            padding-top: 150%;  
-            position: relative; 
-            overflow: hidden; 
-        }
 
-        .img-cover {
-            position: absolute;
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            left: 0;
-            top: 0;
-        }
-    </style>
 </head>
 
 <body>
@@ -66,7 +43,9 @@
     @yield('content')
 
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/ecb2ddea75.js" crossorigin="anonymous"></script>
+<script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>
