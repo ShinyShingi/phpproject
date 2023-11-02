@@ -19,9 +19,6 @@ class BookController extends Controller
         $incompleteBooks = Book::where('status', 'unread')->get();
         $inProgressBooks = Book::where('status', 'reading')->get();
         
-        Log::info('Completed Books:', ['completedBooks' => $completedBooks]);
-        Log::info('Incomplete Books:', ['incompleteBooks' => $incompleteBooks]);
-        Log::info('In Progress Books:', ['inProgressBooks' => $inProgressBooks]);
 
         return view('shinybooks', [
             'completedBooks' => $completedBooks, 
@@ -116,6 +113,38 @@ class BookController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+     public function getBook($id) {
+        $book = Book::find($id);
+        if($book) {
+            return response()->json($book);
+        }
+        return response()->json(['success' => false, 'message' => 'Book not found']);
+    }
+    
+    public function updateBook($id, Request $request) {
+        $book = Book::find($id);
+        Log::info($request->all());
+
+        if(!$book) {
+            return response()->json(['success' => false, 'message' => 'Book not found']);
+        }
+        if ($book) {
+            $book->title = $request->input('title');
+            $book->author = $request->input('author');
+            $book->series = $request->input('series');
+        
+            if ($request->hasFile('cover')) {
+                // Save the uploaded file to the public/covers directory
+                $path = $request->file('cover')->store('covers', 'public');
+                $book->cover = $path;
+            }
+        
+            $book->save();
+        }
+    
+        return response()->json(['success' => true, 'message' => 'Book updated successfully']);
+    }
     public function update(Request $request, string $id)
     {
 

@@ -26,6 +26,12 @@ Route::get('edit', [BookController::class, 'edit']);
 Route::post('store-data', [BookController::class,'store']);
 Route::post('/updateBook/{id}', [BookController::class, 'update']);
 Route::delete('/updateBook/{id}', [BookController::class,'destroy']);
+
+Route::get('/getBook/{id}', [BookController::class,'getBook']);
+Route::post('/updateBook/{id}', [BookController::class,'updateBook']);
+
+
+
 //Route::match(['put', 'delete', 'post'], 'store-data', [BookController::class, 'store']);
 
 // Route::get('/check-storage', function() {
