@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             
             // AJAX call to update database
-            fetch('/updateBook/' + bookId, {
+            fetch('/updateStatus/' + bookId, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
