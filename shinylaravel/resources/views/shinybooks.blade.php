@@ -131,27 +131,53 @@
             </div>
             <div class="modal-body">
                 <form id="editBookForm" enctype="multipart/form-data">
-                <input type="hidden" id="edit-id">  <!-- Hidden field for the book ID -->
-                <div class="mb-3">
-                    <label for="edit-title" class="form-label">Title</label>
-                    <input type="text" class="form-control" id="edit-title" name="title" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-author" class="form-label">Author</label>
-                    <input type="text" class="form-control" id="edit-author" name="author" required>
-                </div>
-                <div class="mb-3">
-                    <label for="edit-series" class="form-label">Series</label>
-                    <input type="text" class="form-control" id="edit-series" name="series">
-                </div>
-                <div class="mb-3">
-                    <label for="edit-cover" class="form-label">Cover Image</label>
-                    <input type="file" class="form-control" id="edit-cover" name="cover">
-                </div>
-                <!-- Add more fields as necessary -->
-                <button type="submit" class="btn btn-primary">Update</button>
+                    <input type="hidden" id="edit-id">  <!-- Hidden field for the book ID -->
+                    <div class="mb-3">
+                        <label for="edit-title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="edit-title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="edit-author" name="author" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-series" class="form-label">Series</label>
+                        <input type="text" class="form-control" id="edit-series" name="series">
+                    </div>
+                    <div class="mb-3">
+                        <label for="edit-cover" class="form-label">Cover Image</label>
+                        <input type="file" class="form-control" id="edit-cover" name="cover">
+                    </div>
+                    <!-- Add more fields as necessary -->
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Review Modal-->
+
+    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labeledby="addReviewModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        Add Review
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="" id="addReviewForm" enctype="multipart/form-data">
+                        <input type="hidden" id="edit-id">
+                        <div class="mb-3">
+                            <label for="addReview">Add Review</label>
+                            <input type="textarea" class="form-control" id="addReview">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Add Review</button>
+
+                    </form>
+                </div>
             </div>
         </div>
     </div>
