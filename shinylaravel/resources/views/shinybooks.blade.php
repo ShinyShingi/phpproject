@@ -4,7 +4,29 @@
 @endsection
 @section('content')
 
-  <!--  <div class="row mt-3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="row mt-3">
         <div class="col-12 align-self-center">
             <h3 class="mb-3">Books to read:</h3>
             <ul class="row" id="incomplete-books">
@@ -27,7 +49,7 @@
                         </p>
                     </span>
                     <span>
-                        Status: 
+                        Status:
                         <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
                             <option selected value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
                             <option value="reading">Reading</option>
@@ -65,7 +87,7 @@
                             </p>
                         </span>
                         <span>
-                            Status: 
+                            Status:
                             <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
                                 <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
                                 <option selected value="reading">Reading</option>
@@ -103,7 +125,7 @@
                         </p>
                     </span>
                     <span>
-                        Status: 
+                        Status:
                         <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
                             <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
                             <option value="reading">Reading</option>
@@ -130,7 +152,7 @@
             </div>
             <div class="modal-body">
                 <form id="editBookForm" enctype="multipart/form-data">
-                    <input type="hidden" id="edit-id"> 
+                    <input type="hidden" id="edit-id">
                     <div class="mb-3">
                         <label for="edit-title" class="form-label">Title</label>
                         <input type="text" class="form-control" id="edit-title" name="title" required>
@@ -155,7 +177,7 @@
     </div>
 
 
-    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labeledby="addReviewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -180,4 +202,3 @@
     </div>
 
 @endsection
--->
