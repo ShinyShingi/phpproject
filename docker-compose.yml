@@ -1,4 +1,4 @@
-version: "3"
+version: "3.2"
 
 services:
 
@@ -6,14 +6,14 @@ services:
     build:
       context: ./docker/web
     volumes:
-      - ./shinylaravel:/my/web/app:ro
+      - ./shinylaravel:/app:ro
       # - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
       - 4455:80
     environment:
       CLIENT_MAX_BODY_SIZE: 100M
       GLOBAL_MAX_BODY_SIZE: 100M
-    working_dir: /my/web/app
+    working_dir: /app
     
 
   php:
@@ -23,20 +23,21 @@ services:
         - PUID=${PUID}
         - PGID=${PGID}
     volumes:
-      - ./shinylaravel:/my/web/app
-    working_dir: /my/web/app
+      - ./shinylaravel:/app
+    working_dir: /app
 
-  # node:
-  #   container_name: nodejs
-  #   image: node:lts
-  #   working_dir: /var/www/html/app/
-  #   entrypoint: /bin/bash
-  #   ports:
-  #     - 4567:4567
-  #   volumes:
-  #     - ./shinybooks/:/var/www/html/app
-  #   tty: true
-  #   user: ${PUID}:${PGID}
+
+  node:
+    image: node:lts-alpine
+    volumes:
+      - ./shinядфкфмуд:/app
+    working_dir: /app
+    user: ${PUID}:${PGID}
+    env_file:
+      - ./.env
+    tty: true
+    ports:
+      - ${DEV_PORT}:${DEV_PORT}
   
   db:
     image: mysql:8.0.23

@@ -145,7 +145,7 @@ class BookController extends Controller
     
         return response()->json(['success' => true, 'message' => 'Book updated successfully']);
     }
-    public function update(Request $request, string $id)
+    public function updateStatus(Request $request, string $id)
     {
 
         $existingBook = Book::find($id);
