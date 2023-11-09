@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-    <div class="row mt-3">
+  <!--  <div class="row mt-3">
         <div class="col-12 align-self-center">
             <h3 class="mb-3">Books to read:</h3>
             <ul class="row" id="incomplete-books">
@@ -121,7 +121,6 @@
         </div>
     </div>
 
-    <!-- Edit Book Modal -->
     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -131,7 +130,7 @@
             </div>
             <div class="modal-body">
                 <form id="editBookForm" enctype="multipart/form-data">
-                    <input type="hidden" id="edit-id">  <!-- Hidden field for the book ID -->
+                    <input type="hidden" id="edit-id"> 
                     <div class="mb-3">
                         <label for="edit-title" class="form-label">Title</label>
                         <input type="text" class="form-control" id="edit-title" name="title" required>
@@ -148,7 +147,6 @@
                         <label for="edit-cover" class="form-label">Cover Image</label>
                         <input type="file" class="form-control" id="edit-cover" name="cover">
                     </div>
-                    <!-- Add more fields as necessary -->
                     <button type="submit" class="btn btn-primary">Update</button>
                 </form>
             </div>
@@ -156,7 +154,6 @@
         </div>
     </div>
 
-    <!-- Add Review Modal-->
 
     <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labeledby="addReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -183,3 +180,4 @@
     </div>
 
 @endsection
+-->

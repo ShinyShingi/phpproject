@@ -1,4 +1,4 @@
-version: "3.2"
+version: "3"
 
 services:
 
@@ -13,6 +13,8 @@ services:
     environment:
       CLIENT_MAX_BODY_SIZE: 100M
       GLOBAL_MAX_BODY_SIZE: 100M
+    
+    tty: true
     working_dir: /app
     
 
@@ -26,11 +28,10 @@ services:
       - ./shinylaravel:/app
     working_dir: /app
 
-
   node:
     image: node:lts-alpine
     volumes:
-      - ./shinядфкфмуд:/app
+      - ./shinylaravel:/app
     working_dir: /app
     user: ${PUID}:${PGID}
     env_file:
