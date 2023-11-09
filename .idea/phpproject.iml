@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/shinylaravel/tests/Unit" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/dflydev/dot-access-data" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/dragonmantank/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/filp/whoops" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/fruitcake/php-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/guzzlehttp/uri-template" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/pint" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/prompts" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/sail" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/serializable-closure" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/league/commonmark" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/league/config" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/league/flysystem-local" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nette/schema" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nette/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nunomaduro/collision" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/nunomaduro/termwind" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/clock" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/code-unit" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/spatie/backtrace" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/spatie/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/spatie/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/spatie/laravel-ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/error-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/mailer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-php83" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/polyfill-uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/uid" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/vlucas/phpdotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/voku/portable-ascii" />
+      <excludeFolder url="file://$MODULE_DIR$/shinylaravel/vendor/webmozart/assert" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
