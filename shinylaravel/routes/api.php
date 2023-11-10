@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookApiController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,14 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/books', [BookController::class, 'index']);
-Route::prefix('/book')->group( function() {
-    Route::post('/store', [BookController::class,'store']);
-    Route::put('/{id}', [BookController::class, 'update']);
-    Route::delete('/{id}', [BookController::class, 'destroy']);
-});
-Route::get('create', [BookController::class, 'create']);
-Route::get('edit', [BookController::class, 'edit']);
-Route::post('store-data', [BookController::class,'store']);
-Route::post('/updateBook/{id}', [BookController::class, 'update']);
-Route::delete('/updateBook/{id}', [BookController::class,'destroy']);
+Route::get('books', [BookApiController::class, 'index']);
+

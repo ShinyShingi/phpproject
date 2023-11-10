@@ -8,14 +8,15 @@
         <div class="col-12 align-self-center">
             <h3 class="mb-3">Books to read:</h3>
             <ul class="row" id="incomplete-books">
-            @foreach ($incompleteBooks as $book)
-                <li class="mt-3 mb-1 col-12 col-md-3 book">
-                    <div class="image-container">
-                        <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
-                    </div>
-                    <input type="hidden" id="bookId" value="{{ $book->id }}">
+                @foreach ($incompleteBooks as $book)
+                    <li class="mt-3 mb-1 col-12 col-md-3 book">
+                        <div class="image-container">
+                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover"
+                                 alt="Cover Image">
+                        </div>
+                        <input type="hidden" id="bookId" value="{{ $book->id }}">
 
-                    <span class="book-data">
+                        <span class="book-data">
                         <h4>
                             {{$book->title}}
                         </h4>
@@ -26,21 +27,22 @@
                             {{$book->series}}
                         </p>
                     </span>
-                    <span>
-                        Status: 
-                        <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
+                        <span>
+                        Status:
+                        <select class="form-select" id="book-status-{{ $book->id }}" name="status"
+                                data-id="{{ $book->id }}">
                             <option selected value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
                             <option value="reading">Reading</option>
                             <option value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
                         </select>
 
                     </span>
-                    <button data-id="{{$book->id}}" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
-                    <button data-id="{{$book->id}}" class="btn btn-secondary edit-book-btn">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </li>
-            @endforeach
+                        <button data-id="{{$book->id}}" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                        <button data-id="{{$book->id}}" class="btn btn-secondary edit-book-btn">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </li>
+                @endforeach
             </ul>
 
 
@@ -49,7 +51,8 @@
                 @foreach ($inProgressBooks as $book)
                     <li class="mt-3 mb-1 col-12 col-md-3  book">
                         <div class="image-container">
-                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
+                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover"
+                                 alt="Cover Image">
                         </div>
                         <input type="hidden" id="bookId" value="{{ $book->id }}">
 
@@ -65,8 +68,9 @@
                             </p>
                         </span>
                         <span>
-                            Status: 
-                            <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
+                            Status:
+                            <select class="form-select" id="book-status-{{ $book->id }}" name="status"
+                                    data-id="{{ $book->id }}">
                                 <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
                                 <option selected value="reading">Reading</option>
                                 <option value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
@@ -84,81 +88,79 @@
 
             <h3 class="mb-3 mt-5">Completed Books:</h3>
             <ul class="mb-5 row" id="completed-books">
-            @foreach ($completedBooks as $book)
-                <li class="mt-3 mb-1 col-12 col-md-3 book">
-                    <div class="image-container">
-                        <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover" alt="Cover Image">
-                    </div>
-                    <input type="hidden" id="bookId" value="{{ $book->id }}">
+                @foreach ($completedBooks as $book)
+                    <li class="mt-3 mb-1 col-12 col-md-3 book">
+                        <div class="image-container">
+                            <img src="{{ asset('storage/'.$book->cover) }}" class="img-fluid img-cover"
+                                 alt="Cover Image">
+                        </div>
+                        <input type="hidden" id="bookId" value="{{ $book->id }}">
 
-                    <span class="book-data">
-                        <h4>
-                            {{$book->title}}
-                        </h4>
-                        <h5>
-                            {{$book->author}}
-                        </h5>
-                        <p>
-                            {{$book->series}}
-                        </p>
-                    </span>
-                    <span>
-                        Status: 
-                        <select class="form-select" id="book-status-{{ $book->id }}" name="status" data-id="{{ $book->id }}">
-                            <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
-                            <option value="reading">Reading</option>
-                            <option selected value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
-                        </select>
-
-                    </span>
-                    <button data-id="{{$book->id}}" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
-                    <button data-id="{{$book->id}}" class="btn btn-secondary edit-book-btn">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </li>
-            @endforeach
+                        <span class="book-data">
+                            <h4>
+                                {{$book->title}}
+                            </h4>
+                            <h5>
+                                {{$book->author}}
+                            </h5>
+                            <p>
+                                {{$book->series}}
+                            </p>
+                        </span>
+                        <span>
+                        Status:
+                            <select class="form-select" id="book-status-{{ $book->id }}" name="status"
+                                    data-id="{{ $book->id }}">
+                                <option value="unread" {{ !$book->completed ? 'selected' : '' }}>Unread</option>
+                                <option value="reading">Reading</option>
+                                <option selected value="read" {{ $book->completed ? 'selected' : '' }}>Read</option>
+                            </select>
+                        </span>
+                        <button data-id="{{$book->id}}" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                        <button data-id="{{$book->id}}" class="btn btn-secondary edit-book-btn">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
 
-    <!-- Edit Book Modal -->
     <div class="modal fade" id="editBookModal" tabindex="-1" aria-labelledby="editBookModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editBookModalLabel">Edit Book</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form id="editBookForm" enctype="multipart/form-data">
-                    <input type="hidden" id="edit-id">  <!-- Hidden field for the book ID -->
-                    <div class="mb-3">
-                        <label for="edit-title" class="form-label">Title</label>
-                        <input type="text" class="form-control" id="edit-title" name="title" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-author" class="form-label">Author</label>
-                        <input type="text" class="form-control" id="edit-author" name="author" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-series" class="form-label">Series</label>
-                        <input type="text" class="form-control" id="edit-series" name="series">
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-cover" class="form-label">Cover Image</label>
-                        <input type="file" class="form-control" id="edit-cover" name="cover">
-                    </div>
-                    <!-- Add more fields as necessary -->
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBookModalLabel">Edit Book</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editBookForm" enctype="multipart/form-data">
+                        <input type="hidden" id="edit-id">
+                        <div class="mb-3">
+                            <label for="edit-title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="edit-title" name="title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-author" class="form-label">Author</label>
+                            <input type="text" class="form-control" id="edit-author" name="author" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-series" class="form-label">Series</label>
+                            <input type="text" class="form-control" id="edit-series" name="series">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edit-cover" class="form-label">Cover Image</label>
+                            <input type="file" class="form-control" id="edit-cover" name="cover">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Add Review Modal-->
 
-    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labeledby="addReviewModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addReviewModal" tabindex="-1" aria-labelledby="addReviewModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
