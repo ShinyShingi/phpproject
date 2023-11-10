@@ -1,12 +1,14 @@
 import './bootstrap';
-
-import {createApp} from 'vue'
+import { createApp } from 'vue';
 import App from './App.vue';
+import imagePlugin from './plugins/imagePlugin'; // Adjust the import path as necessary
 
-const app = createApp({
-    /* root component options */
-})
+const app = createApp(App);
 
-console.log("I'm app.js")
-createApp(App).mount('#app')
 
+app.config.globalProperties.$testMethod = () => "Test Method";
+app.use(imagePlugin); // Use the plugin
+
+app.mount('#app');
+
+console.log("I'm app.js");
