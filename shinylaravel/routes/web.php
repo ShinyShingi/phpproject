@@ -19,11 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [BookController::class, 'index']);
 Route::get("books", [VueBookController::class, 'index']);
 
-//Route::prefix('/book')->group( function() {
-//    //Route::post('/store', [BookController::class,'store']);
-//    //Route::put('/updateBook/{id}', [BookController::class, 'update']);
-//    //Route::delete('/{id}', [BookController::class, 'destroy']);
-//});
+
 Route::get('create', [BookController::class, 'create']);
 Route::get('edit', [BookController::class, 'edit']);
 Route::post('store-data', [BookController::class,'store']);
@@ -33,15 +29,4 @@ Route::delete('/updateBook/{id}', [BookController::class,'destroy']);
 Route::get('/getBook/{id}', [BookController::class,'getBook']);
 Route::post('/updateBook/{id}', [BookController::class,'updateBook']);
 
-
-
-//Route::match(['put', 'delete', 'post'], 'store-data', [BookController::class, 'store']);
-
-// Route::get('/check-storage', function() {
-//     if (Storage::disk('public')->put('test.txt', 'Write something')) {
-//         return 'The storage is writable!';
-//     } else {
-//         return 'The storage is not writable!';
-//     }
-// });
 
