@@ -4,6 +4,7 @@ import { ref, onMounted } from 'vue';
 const completedBooks = ref([]);
 const incompleteBooks = ref([]);
 const inProgressBooks = ref([]);
+const baseURL = import.meta.env.VITE_API_URL;
 
 onMounted(async () => {
     const response = await fetch('/api/books');
@@ -27,7 +28,7 @@ onMounted(async () => {
             <ul class="row" id="incomplete-books">
                 <li v-for="book in incompleteBooks" :key="book.id" class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img src="{{ asset('storage/'.book.cover) }}" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
@@ -48,7 +49,7 @@ onMounted(async () => {
             <ul class="row" id="in-progress-books">
                 <li v-for="book in inProgressBooks" :key="book.id" class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img src="{{ asset('storage/'.book.cover) }}" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
@@ -68,7 +69,7 @@ onMounted(async () => {
             <ul class="mb-5 row" id="completed-books">
                 <li v-for="book in completedBooks" :key="book.id"  class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img src="{{ asset('storage/'.book.cover) }}" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
