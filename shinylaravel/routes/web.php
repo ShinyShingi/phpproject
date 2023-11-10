@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\VueBookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +17,13 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [BookController::class, 'index']);
-Route::prefix('/book')->group( function() {
-    //Route::post('/store', [BookController::class,'store']);
-    //Route::put('/updateBook/{id}', [BookController::class, 'update']);
-    //Route::delete('/{id}', [BookController::class, 'destroy']);
-});
+Route::get("books", [VueBookController::class, 'index']);
+
+//Route::prefix('/book')->group( function() {
+//    //Route::post('/store', [BookController::class,'store']);
+//    //Route::put('/updateBook/{id}', [BookController::class, 'update']);
+//    //Route::delete('/{id}', [BookController::class, 'destroy']);
+//});
 Route::get('create', [BookController::class, 'create']);
 Route::get('edit', [BookController::class, 'edit']);
 Route::post('store-data', [BookController::class,'store']);

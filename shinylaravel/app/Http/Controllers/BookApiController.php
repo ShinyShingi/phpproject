@@ -18,7 +18,7 @@ class BookApiController extends Controller
         $inProgressBooks = Book::where('status', 'reading')->get();
 
 
-        return view('start', [
+        return response()->json([
             'completedBooks' => $completedBooks,
             'incompleteBooks' => $incompleteBooks,
             'inProgressBooks' => $inProgressBooks

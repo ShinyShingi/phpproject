@@ -37,6 +37,7 @@ services:
     env_file:
       - ./.env
     tty: true
+
     ports:
       - ${DEV_PORT}:${DEV_PORT}
   
