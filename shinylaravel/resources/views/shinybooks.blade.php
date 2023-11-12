@@ -27,7 +27,7 @@
                             {{$book->series}}
                         </p>
                     </span>
-                        <span>
+                    <span>
                         Status:
                         <select class="form-select" id="book-status-{{ $book->id }}" name="status"
                                 data-id="{{ $book->id }}">

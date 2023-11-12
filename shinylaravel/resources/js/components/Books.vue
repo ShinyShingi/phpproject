@@ -6,8 +6,45 @@ const incompleteBooks = ref([]);
 const inProgressBooks = ref([]);
 const baseURL = import.meta.env.VITE_API_URL;
 
+const removeBook = (id) => {
+    // Logic to remove the book
+    if (confirm('Are you sure you want to delete this book?')) {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        fetch(`/updateBook/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                incompleteBooks.value   = incompleteBooks.value.filter(book => book.id !== id);
+                completedBooks.value    = completedBooks.value.filter(book->book.id !== id);
+                inProgressBooks.value   = inProgressBooks.value.filter(book->book.id !== id);
+            })
+            .catch((error) => console.error('Error:', error));
+    }
+};
+
+const editBook = (id) => {
+    // Logic to edit the book
+    fetch(`/getBook/${id}`)
+        .then(response => response.json())
+        .then(data => {
+            // Assuming you have a method or a way to populate the modal fields
+            showModalWithBookData(data);
+        })
+        .catch((error) => console.error('Error:', error));
+};
+
+const updateStatus = (book) => {
+    // Logic to handle status update
+};
+
 onMounted(async () => {
-    const response = await fetch('/api/books');
+    const response = await fetch(`/api/books`);
     if (response.ok) {
         const data = await response.json();
         completedBooks.value = data.completedBooks;
@@ -19,6 +56,7 @@ onMounted(async () => {
     }
 });
 </script>
+
 
 <template>
     <div>
@@ -41,6 +79,18 @@ onMounted(async () => {
                         {{ book.series }}
                     </p>
 
+                    <span>
+                        Status:
+                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
+                            <option selected value="unread">Unread</option>
+                            <option value="reading">Reading</option>
+                            <option value="read">Read</option>
+                        </select>
+                    </span>
+                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
+                        <i class="fa fa-pencil"></i>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -61,6 +111,18 @@ onMounted(async () => {
                     <p>
                         {{ book.series }}
                     </p>
+                    <span>
+                        Status:
+                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
+                            <option  value="unread">Unread</option>
+                            <option selected value="reading">Reading</option>
+                            <option value="read">Read</option>
+                        </select>
+                    </span>
+                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
+                        <i class="fa fa-pencil"></i>
+                    </button>
                 </li>
             </ul>
         </div>
@@ -81,6 +143,18 @@ onMounted(async () => {
                     <p>
                         {{ book.series }}
                     </p>
+                    <span>
+                        Status:
+                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
+                            <option  value="unread">Unread</option>
+                            <option value="reading">Reading</option>
+                            <option selected value="read">Read</option>
+                        </select>
+                    </span>
+                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
+                        <i class="fa fa-pencil"></i>
+                    </button>
                 </li>
             </ul>
         </div>
