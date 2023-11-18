@@ -1,3 +1,4 @@
+
 function sortList(ul) {
     Array.from(ul.getElementsByTagName("li"))
     .sort((a, b) => a.textContent.toLowerCase().localeCompare(b.textContent.toLowerCase()))
@@ -6,13 +7,13 @@ function sortList(ul) {
 document.addEventListener('DOMContentLoaded', function () {
     let selects = document.querySelectorAll('.form-select');
     let csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    var ul = document.querySelector("ul");
+    const ul = document.querySelector("ul");
     sortList(ul);
     selects.forEach(function(select) {
         select.addEventListener('change', function() {
             let bookId = this.dataset.id;
             let newStatus = this.value;  // Get the selected value
-            
+
             // Identify the different book lists
             let incompleteList = document.getElementById('incomplete-books');
             let completedList = document.getElementById('completed-books');
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let listItem = this.closest('li');
 
-            
+
             // AJAX call to update database
             fetch('/updateStatus/' + bookId, {
                 method: 'POST',
@@ -33,9 +34,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 body: JSON.stringify({ status: newStatus })
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Server responded with an error!');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Success:', data)
 
                 // Move the list item to the appropriate list
                 if (newStatus === 'unread') {
@@ -54,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('.delete-book-btn').forEach(function(button) {
         button.addEventListener('click', function() {
             let bookId = this.dataset.id;
-            
+
             // Confirm the deletion action
             if (confirm('Are you sure you want to delete this book?')) {
                 // AJAX call to delete book
@@ -108,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         let bookId = clickedBookId; // Using the clickedBookId variable here
         console.log(bookId);
-        
+
         let editBookForm = document.querySelector('#editBookForm');
         let formData = new FormData(editBookForm);
 
@@ -132,5 +138,5 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
-    
+
 });

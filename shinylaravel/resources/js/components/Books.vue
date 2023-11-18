@@ -1,10 +1,12 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, nextTick, onMounted } from 'vue';
+import EditBookModal from "./EditBookModal.vue";
+const editBookModal = ref(null);
+
 
 const completedBooks = ref([]);
 const incompleteBooks = ref([]);
 const inProgressBooks = ref([]);
-const baseURL = import.meta.env.VITE_API_URL;
 
 const removeBook = (id) => {
     // Logic to remove the book
@@ -21,20 +23,20 @@ const removeBook = (id) => {
             .then(response => response.json())
             .then(data => {
                 incompleteBooks.value   = incompleteBooks.value.filter(book => book.id !== id);
-                completedBooks.value    = completedBooks.value.filter(book->book.id !== id);
-                inProgressBooks.value   = inProgressBooks.value.filter(book->book.id !== id);
+                completedBooks.value    = completedBooks.value.filter(book=>book.id !== id);
+                inProgressBooks.value   = inProgressBooks.value.filter(book=>book.id !== id);
             })
             .catch((error) => console.error('Error:', error));
     }
 };
-
-const editBook = (id) => {
+const editBook = async (id) => {git
     // Logic to edit the book
     fetch(`/getBook/${id}`)
         .then(response => response.json())
-        .then(data => {
-            // Assuming you have a method or a way to populate the modal fields
-            showModalWithBookData(data);
+        .then(async data => {
+            if (editBookModal.value) {
+                editBookModal.value.openModal(data);
+            }
         })
         .catch((error) => console.error('Error:', error));
 };
@@ -45,6 +47,7 @@ const updateStatus = (book) => {
 
 onMounted(async () => {
     const response = await fetch(`/api/books`);
+
     if (response.ok) {
         const data = await response.json();
         completedBooks.value = data.completedBooks;
@@ -59,6 +62,7 @@ onMounted(async () => {
 
 
 <template>
+    <edit-book-modal ref="editBookModal"/>
     <div>
         <h2>Books</h2>
         <div>
@@ -66,7 +70,7 @@ onMounted(async () => {
             <ul class="row" id="incomplete-books">
                 <li v-for="book in incompleteBooks" :key="book.id" class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class=" img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
@@ -87,8 +91,8 @@ onMounted(async () => {
                             <option value="read">Read</option>
                         </select>
                     </span>
-                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
-                    <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
+                    <button @click="removeBook(book.id)" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="editBook(book.id)"  class="btn btn-secondary edit-book-btn">
                         <i class="fa fa-pencil"></i>
                     </button>
                 </li>
@@ -99,7 +103,7 @@ onMounted(async () => {
             <ul class="row" id="in-progress-books">
                 <li v-for="book in inProgressBooks" :key="book.id" class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class="img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
@@ -131,7 +135,7 @@ onMounted(async () => {
             <ul class="mb-5 row" id="completed-books">
                 <li v-for="book in completedBooks" :key="book.id"  class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
-                        <img :src="$getImageUrl(book.cover)" class="img-fluid img-cover"
+                        <img :src="$getImageUrl(book.cover)" class="img-cover"
                              alt="Cover Image">
                     </div>
                     <h4>
@@ -159,4 +163,5 @@ onMounted(async () => {
             </ul>
         </div>
     </div>
+
 </template>

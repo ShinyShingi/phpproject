@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\VueBookController;
+
 use App\Http\Controllers\BookApiController;
 
 use Illuminate\Http\Request;
@@ -22,4 +24,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('books', [BookApiController::class, 'index']);
+Route::post('books/{id}', [VueBookController::class,'updateBook']);
 

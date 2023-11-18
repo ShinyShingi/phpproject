@@ -26,7 +26,7 @@ Route::post('store-data', [BookController::class,'store']);
 Route::post('/updateStatus/{id}', [BookController::class, 'updateStatus']);
 Route::delete('/updateBook/{id}', [BookController::class,'destroy']);
 
-Route::get('/getBook/{id}', [BookController::class,'getBook']);
+Route::get('/getBook/{id}', [VueBookController::class,'getBook']);
 Route::post('/updateBook/{id}', [BookController::class,'updateBook']);
 
 
