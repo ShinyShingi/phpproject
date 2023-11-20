@@ -11,7 +11,7 @@ export default {
 
 
 <template>
-    <h2>This is App.vue</h2>
+
     <Books>
 
     </Books>

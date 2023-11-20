@@ -122,29 +122,44 @@ class VueBookController extends Controller
         return response()->json(['success' => false, 'message' => 'Book not found']);
     }
 
-    public function updateBook($id, Request $request) {
+    public function updateBook(Request $request, $id) {
         $book = Book::find($id);
-        Log::info($request->all());
+        Log::info("test", $request->all());
 
         if(!$book) {
             return response()->json(['success' => false, 'message' => 'Book not found']);
         }
         if ($book) {
-            $book->title = $request->input('title');
-            $book->author = $request->input('author');
-            $book->series = $request->input('series');
+            Log::info($request->all());
+            if ($request->has('title')) {
+                $book->title = $request->input('title');
+            }
+            if ($request->has('author')) {
+                $book->author = $request->input('author');
+            }
+
+            if ($request->has('series')) {
+                $book->series = $request->input('series');
+            }
+
 
             if ($request->hasFile('cover')) {
                 // Save the uploaded file to the public/covers directory
                 $path = $request->file('cover')->store('covers', 'public');
                 $book->cover = $path;
+                Log::info($request->file('cover'));
             }
-
-            $book->save();
         }
-
-        return response()->json(['success' => true, 'message' => 'Book updated successfully']);
+        $saved = $book->save();
+        if ($saved) {
+            return response()->json(['success' => true, 'message' => 'Book updated successfully controller']);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Failed to update book']);
+        }
     }
+
+
+
     public function updateStatus(Request $request, string $id)
     {
 
@@ -155,7 +170,6 @@ class VueBookController extends Controller
             // Update the book's status in the database
             $existingBook->status = $newStatus;
 
-            // Additional logic if needed (e.g., set completed_at time)
 
             $existingBook->save();
 

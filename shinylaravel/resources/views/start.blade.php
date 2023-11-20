@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.vueapp')
 @section('title')
     Shiny's Reading list
 @endsection
 @section('content')
-    <div id="app">
+    <div id="books">
 
     </div>
 
