@@ -1,6 +1,7 @@
 <script setup>
-import { ref, nextTick, onMounted } from 'vue';
+import {ref, nextTick, onMounted} from 'vue';
 import EditBookModal from "./EditBookModal.vue";
+
 const editBookModal = ref(null);
 
 
@@ -22,14 +23,15 @@ const removeBook = (id) => {
         })
             .then(response => response.json())
             .then(data => {
-                incompleteBooks.value   = incompleteBooks.value.filter(book => book.id !== id);
-                completedBooks.value    = completedBooks.value.filter(book=>book.id !== id);
-                inProgressBooks.value   = inProgressBooks.value.filter(book=>book.id !== id);
+                incompleteBooks.value = incompleteBooks.value.filter(book => book.id !== id);
+                completedBooks.value = completedBooks.value.filter(book => book.id !== id);
+                inProgressBooks.value = inProgressBooks.value.filter(book => book.id !== id);
             })
             .catch((error) => console.error('Error:', error));
     }
 };
-const editBook = async (id) => {git
+const editBook = async (id) => {
+    git
     // Logic to edit the book
     fetch(`/getBook/${id}`)
         .then(response => response.json())
@@ -43,6 +45,41 @@ const editBook = async (id) => {git
 
 const updateStatus = (book) => {
     // Logic to handle status update
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    fetch(`/updateStatus/${book.id}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: book.status })
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Server responded with an error!');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+
+            // Remove the book from all lists
+            incompleteBooks.value = incompleteBooks.value.filter(b => b.id !== book.id);
+            completedBooks.value = completedBooks.value.filter(b => b.id !== book.id);
+            inProgressBooks.value = inProgressBooks.value.filter(b => b.id !== book.id);
+
+            // Add the book to the correct list based on its new status
+            if (book.status === 'unread') {
+                incompleteBooks.value.push(book);
+            } else if (book.status === 'reading') {
+                inProgressBooks.value.push(book);
+            } else if (book.status === 'read') {
+                completedBooks.value.push(book);
+            }
+        })
+        .catch((error) => console.error('Error:', error));
+
 };
 
 onMounted(async () => {
@@ -85,14 +122,17 @@ onMounted(async () => {
 
                     <span>
                         Status:
-                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
-                            <option selected value="unread">Unread</option>
+                       <select class="form-select" v-model="book.status" @change="() => updateStatus(book)">
+                            <option value="unread">Unread</option>
                             <option value="reading">Reading</option>
                             <option value="read">Read</option>
                         </select>
+
+
                     </span>
-                    <button @click="removeBook(book.id)" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
-                    <button @click="editBook(book.id)"  class="btn btn-secondary edit-book-btn">
+                    <button @click="removeBook(book.id)" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove
+                    </button>
+                    <button @click="editBook(book.id)" class="btn btn-secondary edit-book-btn">
                         <i class="fa fa-pencil"></i>
                     </button>
                 </li>
@@ -117,13 +157,16 @@ onMounted(async () => {
                     </p>
                     <span>
                         Status:
-                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
-                            <option  value="unread">Unread</option>
-                            <option selected value="reading">Reading</option>
+                       <select class="form-select" v-model="book.status" @change="() => updateStatus(book)">
+                            <option value="unread">Unread</option>
+                            <option value="reading">Reading</option>
                             <option value="read">Read</option>
                         </select>
+
                     </span>
-                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="removeBook(book.id)" data-id="book.id"
+                            class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove
+                    </button>
                     <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
                         <i class="fa fa-pencil"></i>
                     </button>
@@ -133,7 +176,7 @@ onMounted(async () => {
         <div class="">
             <h3 class="mb-3 mt-5">Completed Books:</h3>
             <ul class="mb-5 row" id="completed-books">
-                <li v-for="book in completedBooks" :key="book.id"  class="mt-3 mb-1 col-12 col-md-3 book">
+                <li v-for="book in completedBooks" :key="book.id" class="mt-3 mb-1 col-12 col-md-3 book">
                     <div class="image-container">
                         <img :src="$getImageUrl(book.cover)" class="img-cover"
                              alt="Cover Image">
@@ -149,13 +192,16 @@ onMounted(async () => {
                     </p>
                     <span>
                         Status:
-                        <select class="form-select" :id="'book-status-' + book.id" v-model="book.status" data-id="book.id">
-                            <option  value="unread">Unread</option>
+                       <select class="form-select" v-model="book.status" @change="() => updateStatus(book)">
+                            <option value="unread">Unread</option>
                             <option value="reading">Reading</option>
-                            <option selected value="read">Read</option>
+                            <option value="read">Read</option>
                         </select>
+
                     </span>
-                    <button @click="removeBook(book.id)" data-id="book.id" class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove</button>
+                    <button @click="removeBook(book.id)" data-id="book.id"
+                            class="mt-2 mb-2 btn btn-danger delete-book-btn">Remove
+                    </button>
                     <button @click="editBook(book.id)" data-id="book.id" class="btn btn-secondary edit-book-btn">
                         <i class="fa fa-pencil"></i>
                     </button>
